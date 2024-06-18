@@ -2,9 +2,10 @@
 
 import React, { useState, ChangeEvent, FormEvent, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import PrintQRCode from '../components/PrintQRCode';
-
+import PrintQRCode from '../../components/PrintQRCode';
+import { useRouter } from 'next/router'
 const QrPage: React.FC = () => {
+  const router = useRouter()
   const [url, setUrl] = useState<string>('http://ecirtp.fr');
   const [taille, setTaille] = useState<string>('400');
   const [generate, setGenerate] = useState<boolean>(true);
@@ -48,7 +49,7 @@ const QrPage: React.FC = () => {
             placeholder="Entrez votre code ici..."
           />
           <div className="flex justify-center mt-4">
-            <a className="text-sm text-gray-400 hover:underline mb-2" href="#">Choisir la taille de votre QR code</a>
+            <a className="text-sm text-gray-400 hover:underline mb-2" href="#">Choisir la taille de votre QR code {router.query.slug} </a>
           </div>
           <input
             className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
